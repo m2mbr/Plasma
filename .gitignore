@@ -27,4 +27,5 @@
 *.exe
 *.out
 *.app
-bin
+bin/
+linux-build/
