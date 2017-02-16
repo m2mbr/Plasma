@@ -45,13 +45,12 @@ bool PadControl::onContactBegin(PhysicsContact& contact)
 
 void PadControl::addEvents()
 {
-    // auto listener = EventListenerTouchOneByOne::create();
     auto listener1 = EventListenerTouchAllAtOnce::create();
     listener1->onTouchesBegan = [&](const std::vector<Touch*>& touches, Event* event){
         auto bounds = event->getCurrentTarget()->getBoundingBox();
         for ( auto& touch : touches)
         {
-            Vec2 m = this->convertToWorldSpace(this->getPosition());
+
         }
     };
 
@@ -67,8 +66,7 @@ void PadControl::addEvents()
         for ( auto& touch : touches)
         {
             Vec2 dest = control->getPosition() + touch->getDelta();
-            float dist = dest.distance(control->getCenter());
-            if (dist <= 32.0f){
+            if (control->getDistanceFromCenter(dest) <= 32.0f){
                 control->setPosition(dest); 
             }
         }

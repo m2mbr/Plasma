@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nego/Plasma/Plasma/cocos2d/external/recast/fastlz/fastlz.c
+fastlz.c
+/home/nego/Plasma/Plasma/cocos2d/external/recast/fastlz/fastlz.c
+fastlz.c
+/home/nego/Plasma/Plasma/cocos2d/external/recast/fastlz/fastlz.c
+

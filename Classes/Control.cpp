@@ -67,3 +67,10 @@ Vec2 Control::getCenter()
 {
     return Vec2(this->getParent()->getBoundingBox().size.width/2, this->getParent()->getBoundingBox().size.height/2);
 }
+
+float Control::getDistanceFromCenter(Vec2 touchDestination)
+{
+
+    float dist = touchDestination.distance(this->getCenter());
+    return dist;
+}
