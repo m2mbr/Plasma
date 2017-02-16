@@ -12,7 +12,7 @@ public:
     float getAngle();
     cocos2d::Rect getBox();
     cocos2d::Vec2 getCenter();
-    float getDistanceFromCenter(cocos2d::Vec2 touchDestination);
+    float getDistanceFromCenter(cocos2d::Vec2 pos);
     cocos2d::Size visibleSize;
 private:
     Control* pSprite;
