@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -158,7 +158,7 @@ THE SOFTWARE.
  * Apple recommends its usage but they might consume a lot of memory, specially if you use many of them.
  * So for certain cases, where you might need hundreds of VAO objects, it might be a good idea to disable it.
  * To disable it set it to 0. Enabled by default.
- * If a device doesn't support VAO though it claims to support should add execptions list here.
+ * If a device doesn't support VAO though it claims to support should add exceptions list here.
  */
 #ifndef CC_TEXTURE_ATLAS_USE_VAO
 #define CC_TEXTURE_ATLAS_USE_VAO 1

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2012      greathqy
  Copyright (c) 2012      cocos2d-x.org
- Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2013-2017 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -396,12 +396,12 @@ void HttpClient::setSSLVerification(const std::string& caFile)
 }
 
 HttpClient::HttpClient()
-: _timeoutForConnect(30)
+: _isInited(false)
+, _timeoutForConnect(30)
 , _timeoutForRead(60)
-, _isInited(false)
 , _threadCount(0)
-, _requestSentinel(new HttpRequest())
 , _cookie(nullptr)
+, _requestSentinel(new HttpRequest())
 {
 	CCLOG("In the constructor of HttpClient!");
 	memset(_responseMessage, 0, RESPONSE_BUFFER_SIZE * sizeof(char));
@@ -416,7 +416,7 @@ HttpClient::~HttpClient()
 }
 
 //Lazy create semaphore & mutex & thread
-bool HttpClient::lazyInitThreadSemphore()
+bool HttpClient::lazyInitThreadSemaphore()
 {
     if (_isInited)
 	{
@@ -435,7 +435,7 @@ bool HttpClient::lazyInitThreadSemphore()
 //Add a get task to queue
 void HttpClient::send(HttpRequest* request)
 {    
-    if (false == lazyInitThreadSemphore()) 
+    if (false == lazyInitThreadSemaphore()) 
     {
         return;
     }
@@ -558,7 +558,7 @@ void HttpClient::processResponse(HttpResponse* response, char* responseMessage)
 		break;
 
 	default:
-		CCASSERT(true, "CCHttpClient: unknown request type, only GET and POSt are supported");
+		CCASSERT(false, "CCHttpClient: unknown request type, only GET,POST,PUT or DELETE is supported");
 		break;
 	}
 

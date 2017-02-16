@@ -57,11 +57,11 @@ bool Control::onContactBegin(PhysicsContact& contact)
     return false;
 }
 
-float Control::getAngle()
+float Control::getAngle(Vec2 pos)
 {
-    return fmod(this->getRotation(), 360);
+    float angle = atan2( 10, 20 );
+    return angle;
 }
-
 
 Vec2 Control::getCenter()
 {
