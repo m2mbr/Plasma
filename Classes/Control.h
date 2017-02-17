@@ -9,10 +9,12 @@ class Control : public cocos2d::Sprite
 public:
     Control();
     static Control* create();
-    float getAngle(cocos2d::Vec2 pos);
     cocos2d::Rect getBox();
     cocos2d::Vec2 getCenter();
+    float getAngleControl(cocos2d::Vec2 pos);
+    void setAngleControl(float angle);
     float getDistanceFromCenter(cocos2d::Vec2 pos);
+    float limit();
     cocos2d::Size visibleSize;
 private:
     Control* pSprite;

@@ -62,12 +62,12 @@ void PadControl::addEvents()
     // };
 
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
-        auto target = static_cast<Sprite*>(event->getCurrentTarget());
         for ( auto& touch : touches)
         {
             Vec2 dest = control->getPosition() + touch->getDelta();
-            if (control->getDistanceFromCenter(dest) <= 32.0f){
-                control->setPosition(dest); 
+            if (control->getDistanceFromCenter(dest) <= control->limit()){
+                control->setPosition(dest);
+                this->angleControl = control->getAngleControl(dest);
             }
         }
     };
@@ -110,12 +110,7 @@ Vec2 PadControl::getCenter()
     return Vec2(this->getBoundingBox().size.width/2, this->getBoundingBox().size.height/2);
 }
 
-float PadControl::getAngle(Vec2 pos)
-{
-    return fmod(this->getRotation(), 360);
-}
-
 float PadControl::getAngleControl()
 {
-    return _angle;
+    return this->angleControl;
 }

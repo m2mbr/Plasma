@@ -57,10 +57,19 @@ bool Control::onContactBegin(PhysicsContact& contact)
     return false;
 }
 
-float Control::getAngle(Vec2 pos)
+float Control::limit()
 {
-    float angle = atan2( 10, 20 );
-    return angle;
+    float max = this->getParent()->getBoundingBox().size.height/2 - this->getBoundingBox().size.height/2;
+    return max;
+}
+
+float Control::getAngleControl(Vec2 pos)
+{   
+    Vec2 center = this->getCenter();
+    float dx = pos.x - center.x; 
+    float dy = pos.y - center.x;
+    float angle = atan2f( dy, dx );
+    return CC_RADIANS_TO_DEGREES(angle) - 90.0f;
 }
 
 Vec2 Control::getCenter()
