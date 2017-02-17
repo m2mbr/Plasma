@@ -13,7 +13,7 @@ public:
     PadControl();
     static PadControl* create(Aircraft* aircraft);
     virtual void update(float delta) override;
-    float getAngle();
+    float getAngle(cocos2d::Vec2);
     float getAngleControl();
     cocos2d::Rect getBox();
     cocos2d::Vec2 getCenter();

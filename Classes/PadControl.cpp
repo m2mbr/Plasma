@@ -110,7 +110,7 @@ Vec2 PadControl::getCenter()
     return Vec2(this->getBoundingBox().size.width/2, this->getBoundingBox().size.height/2);
 }
 
-float PadControl::getAngle(cocos2d::Vec2 pos)
+float PadControl::getAngle(Vec2 pos)
 {
     return fmod(this->getRotation(), 360);
 }
