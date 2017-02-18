@@ -53,12 +53,13 @@ void PadControl::addEvents()
         }
     };
 
-    // listener->onTouchEnded = [&](Touch* touch, Event* event){
-    //     // auto target = static_cast<Sprite*>(event->getCurrentTarget());
-    //     // float r = this->getContentSize().height/2;
-    //     // control->setPosition(r, r);
-    //     // _angle = 0.0f;
-    // };
+    listener1->onTouchesEnded = [&](const std::vector<Touch*>& touches, Event* event){
+        for ( auto& touch : touches)
+        {
+            Vec2 dest = control->getPosition() + touch->getDelta();
+            control->setPosition(this->getCenter());
+        }
+    };
 
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
