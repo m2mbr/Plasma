@@ -56,9 +56,7 @@ void MainScene::update(float delta)
     // }else if(controls->isPressed("right")){
     //     sprite->makeRotation('+');
     // }
-    sprite->setRotation(-pad->getAngleControl());
     launchMeteors(10);
-    sprite->addPad(pad);
     Meteor* meteor = sprite->shotCollision(meteors);
     if(meteor){
         removeMeteor(meteor);

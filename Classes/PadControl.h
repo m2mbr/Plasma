@@ -5,13 +5,14 @@
 #include <vector>
 #include "cocos2d.h"
 
+
 class Aircraft;
 class Control;
 class PadControl : public cocos2d::Sprite
 {
 public:
     PadControl();
-    static PadControl* create(Aircraft* aircraft);
+    static PadControl* create(Aircraft *aircraft);
     virtual void update(float delta) override;
     float getAngleControl();
     cocos2d::Rect getBox();
@@ -24,7 +25,6 @@ private:
     Control* control;
     cocos2d::Vec2 origin;
     cocos2d::Size size;
-    float _angle;
     float angleControl;
     void initOptions();
     void initControl();

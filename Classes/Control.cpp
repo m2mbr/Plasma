@@ -69,7 +69,7 @@ float Control::getAngleControl(Vec2 pos)
     float dx = pos.x - center.x; 
     float dy = pos.y - center.x;
     float angle = atan2f( dy, dx );
-    return CC_RADIANS_TO_DEGREES(angle) - 90.0f;
+    return -(CC_RADIANS_TO_DEGREES(angle) - 90.0f);
 }
 
 Vec2 Control::getCenter()
