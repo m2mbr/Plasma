@@ -45,6 +45,8 @@ void Aircraft::update(float delta)
     this->setRotation(
         this->padControl->getAngleControl()
     );
+    // auto rotateTo = RotateBy::create(1, this->padControl->getAngleControl());
+    // this->runAction(rotateTo);
     if(isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW)){
         makeMove();
     }

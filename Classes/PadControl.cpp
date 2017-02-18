@@ -6,8 +6,6 @@ USING_NS_CC;
 
 PadControl::PadControl()
 {
-    visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
     control = Control::create();
 }
 
@@ -44,7 +42,7 @@ bool PadControl::onContactBegin(PhysicsContact& contact)
 
 void PadControl::addEvents()
 {
-    // auto listener1 = EventListenerTouchAllAtOnce::create();
+    auto listener1 = EventListenerTouchAllAtOnce::create();
     // listener1->onTouchesBegan = [&](const std::vector<Touch*>& touches, Event* event){
     //     auto bounds = event->getCurrentTarget()->getBoundingBox();
     //     for ( auto& touch : touches)
@@ -57,7 +55,8 @@ void PadControl::addEvents()
         for ( auto& touch : touches)
         {
             Vec2 dest = control->getPosition() + touch->getDelta();
-            control->setPosition(this->getCenter());
+            auto moveTo = MoveTo::create(0.4, this->getCenter());
+            control->runAction(moveTo);
         }
     };
 
