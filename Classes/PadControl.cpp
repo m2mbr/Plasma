@@ -44,14 +44,14 @@ bool PadControl::onContactBegin(PhysicsContact& contact)
 
 void PadControl::addEvents()
 {
-    auto listener1 = EventListenerTouchAllAtOnce::create();
-    listener1->onTouchesBegan = [&](const std::vector<Touch*>& touches, Event* event){
-        auto bounds = event->getCurrentTarget()->getBoundingBox();
-        for ( auto& touch : touches)
-        {
+    // auto listener1 = EventListenerTouchAllAtOnce::create();
+    // listener1->onTouchesBegan = [&](const std::vector<Touch*>& touches, Event* event){
+    //     auto bounds = event->getCurrentTarget()->getBoundingBox();
+    //     for ( auto& touch : touches)
+    //     {
 
-        }
-    };
+    //     }
+    // };
 
     listener1->onTouchesEnded = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
