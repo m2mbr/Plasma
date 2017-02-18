@@ -9,10 +9,9 @@ PadControl::PadControl()
     visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     control = Control::create();
-
 }
 
-PadControl* PadControl::create(Aircraft *aircraft)
+PadControl* PadControl::create()
 {
     PadControl* pSprite = new PadControl();
     auto pinfo = AutoPolygon::generatePolygon("res/Controls/flatLight05.png");
@@ -22,8 +21,6 @@ PadControl* PadControl::create(Aircraft *aircraft)
         pSprite->initOptions();
         pSprite->initControl(); 
         pSprite->addEvents();
-        pSprite->aircraft = aircraft;
-
         return pSprite;
     }
     CC_SAFE_DELETE(pSprite);
@@ -70,7 +67,6 @@ void PadControl::addEvents()
             if (control->getDistanceFromCenter(dest) <= control->limit()){
                 control->setPosition(dest);
                 this->angleControl = control->getAngleControl(dest);
-                this->aircraft->setRotation(this->angleControl);
             }
         }
     };

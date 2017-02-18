@@ -33,7 +33,7 @@ bool MainScene::init()
     box = this->getBoundingBox();
     sprite = Aircraft::create();
     addChild(sprite);
-    pad = PadControl::create(sprite);
+    pad = PadControl::create();
     addChild(pad, 10);
     sprite->addPad(pad);
     controls = new Controls(sprite);
