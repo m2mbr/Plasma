@@ -44,7 +44,7 @@ void Aircraft::addEvents()
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
         {
-            // makeMove();
+            makeMove();
             auto rotateTo = RotateTo::create(0.6, this->padControl->getAngleControl());
             this->runAction(rotateTo);
         }
