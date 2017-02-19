@@ -32,6 +32,26 @@ Aircraft* Aircraft::create()
 void Aircraft::addEvents()
 {
     auto keylistener = EventListenerKeyboard::create();
+    auto listener1 = EventListenerTouchAllAtOnce::create();
+
+    listener1->onTouchesEnded = [&](const std::vector<Touch*>& touches, Event* event){
+        for ( auto& touch : touches)
+        {
+
+        }
+    };
+
+    listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
+        for ( auto& touch : touches)
+        {
+            // makeMove();
+            auto rotateTo = RotateTo::create(0.6, this->padControl->getAngleControl());
+            this->runAction(rotateTo);
+        }
+    };
+
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener1, this);
+
     keylistener->onKeyPressed = CC_CALLBACK_2(Aircraft::onKeyPressed, this);
     keylistener->onKeyReleased = CC_CALLBACK_2(Aircraft::onKeyReleased, this);
     auto aclistener = EventListenerAcceleration::create(CC_CALLBACK_2(Aircraft::onAcceleration, this));
@@ -42,11 +62,6 @@ void Aircraft::addEvents()
 
 void Aircraft::update(float delta)
 {
-    this->setRotation(
-        this->padControl->getAngleControl()
-    );
-    // auto rotateTo = RotateBy::create(1, this->padControl->getAngleControl());
-    // this->runAction(rotateTo);
     if(isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW)){
         makeMove();
     }
