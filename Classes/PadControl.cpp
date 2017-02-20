@@ -64,7 +64,8 @@ void PadControl::addEvents()
         for ( auto& touch : touches)
         {
             Vec2 dest = control->getPosition() + touch->getDelta();
-            if (control->getDistanceFromCenter(dest) <= control->limit()){
+            float distanceFromCenter = control->getDistanceFromCenter(dest);
+            if (distanceFromCenter <= control->limit()){
                 control->setPosition(dest);
                 this->angleControl = control->getAngleControl(dest);
             }
@@ -112,4 +113,9 @@ Vec2 PadControl::getCenter()
 float PadControl::getAngleControl()
 {
     return this->angleControl;
+}
+
+float PadControl::getDistanceFromCenter()
+{
+    return distanceFromCenter;
 }

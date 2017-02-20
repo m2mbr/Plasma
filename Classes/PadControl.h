@@ -16,6 +16,7 @@ public:
     float getAngleControl();
     cocos2d::Rect getBox();
     cocos2d::Vec2 getCenter();
+    float getDistanceFromCenter();
 
 private:
     cocos2d::Size visibleSize;
@@ -24,6 +25,7 @@ private:
     cocos2d::Vec2 origin;
     cocos2d::Size size;
     float angleControl;
+    float distanceFromCenter;
     void initOptions();
     void initControl();
     void addEvents();
