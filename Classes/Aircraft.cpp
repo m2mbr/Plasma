@@ -44,7 +44,6 @@ void Aircraft::addEvents()
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
         {
-            makeMove();
             auto rotateTo = RotateTo::create(0.6, this->padControl->getAngleControl());
             this->runAction(rotateTo);
         }
@@ -62,6 +61,9 @@ void Aircraft::addEvents()
 
 void Aircraft::update(float delta)
 {
+    if(padControl->getDistanceFromCenter()>0){
+        makeMove();
+    }
     if(isKeyPressed(EventKeyboard::KeyCode::KEY_UP_ARROW)){
         makeMove();
     }
@@ -112,11 +114,11 @@ bool Aircraft::isKeyPressed(EventKeyboard::KeyCode KeyCode)
 
 void Aircraft::initOptions()
 {
-    this->setTag(Tags::aircraft);
-    this->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-    this->getPhysicsBody()->setCategoryBitmask(1);
-    this->getPhysicsBody()->setCollisionBitmask(1);
-    this->getPhysicsBody()->setContactTestBitmask(true);
+    setTag(Tags::aircraft);
+    setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+    getPhysicsBody()->setCategoryBitmask(1);
+    getPhysicsBody()->setCollisionBitmask(1);
+    getPhysicsBody()->setContactTestBitmask(true);
 }
 
 void Aircraft::addPhysics()
@@ -134,7 +136,7 @@ void Aircraft::addPhysics()
 
 void Aircraft::makeMove()
 {
-    Vec2 location = this->getPosition();
+    Vec2 location = getPosition();
     float angle = getAngle();
     float radius = CC_DEGREES_TO_RADIANS(angle);
     float r = 3;

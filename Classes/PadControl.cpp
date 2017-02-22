@@ -54,20 +54,20 @@ void PadControl::addEvents()
     listener1->onTouchesEnded = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
         {
-            Vec2 dest = control->getPosition() + touch->getDelta();
-            auto moveTo = MoveTo::create(0.4, this->getCenter());
+            auto moveTo = MoveTo::create(0.4, getCenter());
             control->runAction(moveTo);
+            distanceFromCenter = 0;
         }
     };
 
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
         {
-            Vec2 dest = control->getPosition() + touch->getDelta();
-            float distanceFromCenter = control->getDistanceFromCenter(dest);
+            destTouch = control->getPosition() + touch->getDelta();
+            distanceFromCenter = control->getDistanceFromCenter(destTouch);
             if (distanceFromCenter <= control->limit()){
-                control->setPosition(dest);
-                this->angleControl = control->getAngleControl(dest);
+                control->setPosition(destTouch);
+                angleControl = control->getAngleControl(destTouch);
             }
         }
     };

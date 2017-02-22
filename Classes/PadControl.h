@@ -24,6 +24,7 @@ private:
     Control* control;
     cocos2d::Vec2 origin;
     cocos2d::Size size;
+    cocos2d::Vec2 destTouch;
     float angleControl;
     float distanceFromCenter;
     void initOptions();
