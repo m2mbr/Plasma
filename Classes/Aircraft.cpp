@@ -44,8 +44,7 @@ void Aircraft::addEvents()
     listener1->onTouchesMoved = [&](const std::vector<Touch*>& touches, Event* event){
         for ( auto& touch : touches)
         {
-            auto rotateTo = RotateTo::create(0.6, this->padControl->getAngleControl());
-            this->runAction(rotateTo);
+
         }
     };
 
@@ -136,17 +135,19 @@ void Aircraft::addPhysics()
 
 void Aircraft::makeMove()
 {
-    Vec2 location = getPosition();
-    float angle = getAngle();
-    float radius = CC_DEGREES_TO_RADIANS(angle);
-    float r = 3;
-    float dx = r * sin(radius);
-    float dy = r * cos(radius);
-    Vec2 destination = location + Vec2(dx, dy);
-    float distance = location.distance(destination);
-    float time = distance/2000.0f;
-    auto move = MoveTo::create(time, destination);
-    this->runAction(move);
+  Vec2 location = getPosition();
+  float angle = padControl->getAngleControl();
+  float radius = CC_DEGREES_TO_RADIANS(angle);
+  setRotation(angle);
+  float r = padControl->getDistanceFromCenter() / 2.5;
+  float dx = r * sin(radius);
+  float dy = r * cos(radius);
+  float delta = 2000.0f;
+  Vec2 destination = location + Vec2(dx, dy);
+  float distance = location.distance(destination);
+  float time = distance/delta;
+  auto moveTo = MoveTo::create(time, destination);
+  runAction(moveTo);
 }
 
 void Aircraft::shotLaser()
@@ -251,4 +252,3 @@ void Aircraft::addPad(PadControl* padControl)
 {
     this->padControl = padControl;
 }
-
